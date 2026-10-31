@@ -26,7 +26,7 @@ function doPost(e) {
     options.attachments = [Utilities.newBlob(Utilities.base64Decode(req.pdf_b64), 'application/pdf', req.filename)];
   }
   // sent to yourself, recipients in BCC so they can't see each other
-  GmailApp.sendEmail(Session.getActiveUser().getEmail(), req.subject, req.body, options);
+  GmailApp.sendEmail(Session.getEffectiveUser().getEmail(), req.subject, req.body, options);
   return ContentService.createTextOutput(JSON.stringify({ok: true, sent: to.length}));
 }
 
