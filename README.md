@@ -24,7 +24,7 @@ Jio Financial Services - edit [`config.yaml`](config.yaml) to change them.
 ## How it works
 
 ```
-Mon-Fri ~4:00 PM IST  - Claude Code Routine (runs in Anthropic's cloud on a Claude subscription)
+Mon-Fri ~5:00 PM IST  - Claude Code Routine (runs in Anthropic's cloud on a Claude subscription)
   1. python -m src.collect      data + indicators + 22 candlestick patterns + charts   (no AI)
   2. Claude reads out/brief.md, does a few news searches, writes out/narrative.json
   3. python -m src.pdf_report   builds the PDF                                         (no AI)
@@ -49,7 +49,7 @@ Holidays/weekends are detected automatically (no new market data → the run sto
      GMAIL_APP_PASSWORD=abcd efgh ijkl mnop
      REPORT_RECIPIENTS=you@gmail.com, second@gmail.com, third@outlook.com
      ```
-3. Create a **Routine** → select this repo + environment → model **Sonnet** → schedule **weekdays 16:00 IST** (10:30 UTC) →
+3. Create a **Routine** → select this repo + environment → model **Sonnet** → schedule **weekdays 17:00 IST** (11:30 UTC) →
    prompt: `Follow ROUTINE_PROMPT.md exactly.`
 4. Click **Run now** once and check your inbox and *Settings → Usage*.
 
