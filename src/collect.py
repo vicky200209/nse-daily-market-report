@@ -323,7 +323,7 @@ def write_brief(data, path):
     for s in data["stocks"]:
         p, t, it, f = s["price"], s["tech"], s["intraday"], s["fund"]
         L.append(f"## {s['symbol']} - {s['name']} ({s['sector']})")
-        L.append(f"- Close {p['close']:,} ({p['pct']:+.2f}%, vs Nifty {p['vs_nifty']:+.2f}%), O {p['open']} H {p['high']} L {p['low']}, gap {p['gap_pct']:+.2f}%, volume {p['vol_ratio']}x avg")
+        L.append(f"- Close {p['close']:,} ({p['pct']:+.2f}%; {'beat' if p['vs_nifty'] >= 0 else 'lagged'} Nifty by {abs(p['vs_nifty']):.2f} percentage points), O {p['open']} H {p['high']} L {p['low']}, gap {p['gap_pct']:+.2f}%, volume {p['vol_ratio']}x avg")
         L.append(f"- Intraday: opening range {it['or_low']}-{it['or_high']}, day high at {it['high_time']}, low at {it['low_time']}, closed {it['close_vs_vwap']} VWAP {it['vwap_close']}, biggest 5m move {it['biggest_5m_move']}")
         L.append(f"- Tech: {t['trend']}; RSI {t['rsi']}; MACD {'bullish' if t['macd_bullish'] else 'bearish'}{' (crossed today)' if t['macd_cross_today'] else ''}; 20/50/200 DMA {t['sma20']}/{t['sma50']}/{t['sma200']}; support {t['support']}, resistance {t['resistance']}; 52w {t['lo52']}-{t['hi52']}")
         pats = "; ".join(f"{x['pattern']} ({x['bias']}, {x['date']}) - {x['history']}" for x in s["patterns"]) or "none"

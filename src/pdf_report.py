@@ -201,7 +201,7 @@ def stock_pages(s, n):
     story = [PageBreak(), banner(f"{s['name']}  ({s['symbol']})", f"{s['sector']}" + (f" · {s['industry']}" if s.get("industry") else ""),
                                  f'<font size="16"><b>Rs {p["close"]:,.2f}</b></font><br/><font color="{"#7CFFB2" if p["pct"] >= 0 else "#FF9C9C"}">{p["chg"]:+,.2f} ({p["pct"]:+.2f}%)</font>'),
              Spacer(1, 6)]
-    card = [["Open", "High", "Low", "Prev Close", "Gap at open", "Volume vs avg", "vs Nifty"],
+    card = [["Open", "High", "Low", "Prev Close", "Gap at open", "Volume vs avg", "Beat Nifty by" if p["vs_nifty"] >= 0 else "Lagged Nifty by"],
             [f"{p['open']:,.2f}", f"{p['high']:,.2f}", f"{p['low']:,.2f}", f"{p['prev_close']:,.2f}", f"{p['gap_pct']:+.2f}%",
              f"{p['vol_ratio']}x" if p["vol_ratio"] else "n/a", f"{p['vs_nifty']:+.2f}%"]]
     story.append(table(card, [W / 7] * 7, zebra=False,

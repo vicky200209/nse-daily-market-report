@@ -17,10 +17,12 @@ python -W ignore -m src.collect
 Read `out/brief.md` (~3k tokens). It has indices, sectors, global markets, today's lesson topic,
 and for every stock: prices, intraday story, technicals, candle patterns with their track record, fundamentals.
 
-## Step 3 - News (keep it small: at most 8 web searches)
-1. One search: why Indian market / Nifty moved today + FII DII provisional data today.
-2. For stocks that moved more than ±1.5%, had volume ≥1.5x, or have results/major news - one search each.
-   Group the rest; don't search every stock.
+## Step 3 - News (4 to 8 web searches)
+1. Search: "stock market today Sensex Nifty closing" (+ today's date) - why the market moved.
+2. Search: "FII DII data today" (+ today's date).
+3. Search the **3 biggest movers** among our stocks (largest absolute % change) by name + "share price today",
+   plus any stock with volume ≥1.5x or results today. Don't search every stock.
+   Searching by stock name + date works better than long queries.
 Only state news you actually found. If no clear news, say the move followed the sector/market.
 
 ## Step 4 - Write `out/narrative.json`
