@@ -1,0 +1,62 @@
+# 12-week beginner course: one lesson per trading day (60 lessons).
+# After day 60 the report switches to "review mode" and re-teaches the topic most visible in that day's market.
+- {day: 1,  week: "Week 1 - Market basics", title: "What is a share and what is the stock market?", terms: [Share, Stock Exchange, NSE, BSE, Investor, Trader]}
+- {day: 2,  week: "Week 1 - Market basics", title: "Nifty 50 and Sensex - how 'the market' is measured", terms: [Index, Nifty 50, Sensex, Bank Nifty, Benchmark]}
+- {day: 3,  week: "Week 1 - Market basics", title: "Market timings and what happens at 9:15 and 3:30", terms: [Pre-open Session, Market Hours, Closing Price, Previous Close]}
+- {day: 4,  week: "Week 1 - Market basics", title: "Open, High, Low, Close (OHLC) and Volume", terms: [OHLC, Volume, Day Range, Percentage Change]}
+- {day: 5,  week: "Week 1 - Market basics", title: "Market cap, large-cap vs mid-cap vs small-cap; bulls and bears", terms: [Market Capitalisation, Large-cap, Mid-cap, Small-cap, Bull Market, Bear Market]}
+- {day: 6,  week: "Week 2 - Reading candles", title: "How one candlestick is drawn", terms: [Candlestick, Body, Wick, Green Candle, Red Candle]}
+- {day: 7,  week: "Week 2 - Reading candles", title: "Doji, Dragonfly Doji and Gravestone Doji - the indecision candles", terms: [Doji, Dragonfly Doji, Gravestone Doji, Indecision]}
+- {day: 8,  week: "Week 2 - Reading candles", title: "Hammer and Hanging Man - same shape, different meaning", terms: [Hammer, Hanging Man, Trend Context, Rejection]}
+- {day: 9,  week: "Week 2 - Reading candles", title: "Shooting Star and Inverted Hammer", terms: [Shooting Star, Inverted Hammer, Upper Wick]}
+- {day: 10, week: "Week 2 - Reading candles", title: "Marubozu and Spinning Top - strength vs confusion", terms: [Marubozu, Spinning Top, Conviction]}
+- {day: 11, week: "Week 3 - Two-candle patterns", title: "Bullish and Bearish Engulfing", terms: [Bullish Engulfing, Bearish Engulfing, Reversal]}
+- {day: 12, week: "Week 3 - Two-candle patterns", title: "Harami - the 'pregnant' pattern", terms: [Bullish Harami, Bearish Harami, Momentum Slowdown]}
+- {day: 13, week: "Week 3 - Two-candle patterns", title: "Piercing Line and Dark Cloud Cover", terms: [Piercing Line, Dark Cloud Cover]}
+- {day: 14, week: "Week 3 - Two-candle patterns", title: "Tweezer Tops and Bottoms", terms: [Tweezer Top, Tweezer Bottom, Double Rejection]}
+- {day: 15, week: "Week 3 - Two-candle patterns", title: "Gap up and gap down - when price jumps overnight", terms: [Gap Up, Gap Down, Gap Fill]}
+- {day: 16, week: "Week 4 - Three-candle patterns", title: "Morning Star and Evening Star", terms: [Morning Star, Evening Star]}
+- {day: 17, week: "Week 4 - Three-candle patterns", title: "Three White Soldiers and Three Black Crows", terms: [Three White Soldiers, Three Black Crows]}
+- {day: 18, week: "Week 4 - Three-candle patterns", title: "Confirmation - why you wait for the next candle", terms: [Confirmation, False Signal]}
+- {day: 19, week: "Week 4 - Three-candle patterns", title: "Why patterns fail - reading the Pattern Tracker", terms: [Win Rate, Sample Size, Probability]}
+- {day: 20, week: "Week 4 - Three-candle patterns", title: "Patterns + location: a hammer at support vs a hammer in the middle of nowhere", terms: [Confluence, Location]}
+- {day: 21, week: "Week 5 - Trend & levels", title: "What is a trend? Higher highs and higher lows", terms: [Trend, Uptrend, Downtrend, Higher High, Higher Low]}
+- {day: 22, week: "Week 5 - Trend & levels", title: "Sideways markets and ranges", terms: [Sideways, Range, Consolidation]}
+- {day: 23, week: "Week 5 - Trend & levels", title: "Support - the floor", terms: [Support, Demand Zone]}
+- {day: 24, week: "Week 5 - Trend & levels", title: "Resistance - the ceiling", terms: [Resistance, Supply Zone, Role Reversal]}
+- {day: 25, week: "Week 5 - Trend & levels", title: "Breakout and breakdown", terms: [Breakout, Breakdown, Fake Breakout]}
+- {day: 26, week: "Week 6 - Moving averages", title: "What is a moving average (DMA)?", terms: [Moving Average, SMA, DMA]}
+- {day: 27, week: "Week 6 - Moving averages", title: "20, 50 and 200 DMA - short, medium and long term", terms: [20 DMA, 50 DMA, 200 DMA]}
+- {day: 28, week: "Week 6 - Moving averages", title: "Golden Cross and Death Cross", terms: [Golden Cross, Death Cross]}
+- {day: 29, week: "Week 6 - Moving averages", title: "Moving averages as moving support/resistance", terms: [Dynamic Support, Pullback]}
+- {day: 30, week: "Week 6 - Moving averages", title: "EMA vs SMA", terms: [EMA, Lag]}
+- {day: 31, week: "Week 7 - Indicators", title: "RSI - the speedometer of price", terms: [RSI, Momentum]}
+- {day: 32, week: "Week 7 - Indicators", title: "Overbought and oversold - and why they are not sell/buy signals alone", terms: [Overbought, Oversold]}
+- {day: 33, week: "Week 7 - Indicators", title: "MACD explained", terms: [MACD, Signal Line, Histogram]}
+- {day: 34, week: "Week 7 - Indicators", title: "Divergence - when price and indicator disagree", terms: [Bullish Divergence, Bearish Divergence]}
+- {day: 35, week: "Week 7 - Indicators", title: "ATR - how much does a stock normally move?", terms: [ATR, Volatility]}
+- {day: 36, week: "Week 8 - Volume & intraday", title: "Volume confirms price", terms: [Volume Confirmation, Volume Spike]}
+- {day: 37, week: "Week 8 - Volume & intraday", title: "Delivery percentage - real buying vs day trading", terms: [Delivery Percentage, Intraday Trading]}
+- {day: 38, week: "Week 8 - Volume & intraday", title: "VWAP - the institutional fair price", terms: [VWAP]}
+- {day: 39, week: "Week 8 - Volume & intraday", title: "Opening range - the first 15 minutes", terms: [Opening Range, Opening Range Breakout]}
+- {day: 40, week: "Week 8 - Volume & intraday", title: "Reading a full intraday chart from 9:15 to 3:30", terms: [Intraday Chart, Session High, Session Low]}
+- {day: 41, week: "Week 9 - Fundamentals 1", title: "Revenue, profit and EPS", terms: [Revenue, Net Profit, EPS]}
+- {day: 42, week: "Week 9 - Fundamentals 1", title: "P/E ratio - is the stock cheap or expensive?", terms: [P/E Ratio, Valuation]}
+- {day: 43, week: "Week 9 - Fundamentals 1", title: "P/B ratio and book value - especially for banks", terms: [P/B Ratio, Book Value]}
+- {day: 44, week: "Week 9 - Fundamentals 1", title: "ROE and ROCE - how well management uses money", terms: [ROE, ROCE]}
+- {day: 45, week: "Week 9 - Fundamentals 1", title: "Debt-to-equity - how much the company has borrowed", terms: [Debt to Equity, Leverage]}
+- {day: 46, week: "Week 10 - Fundamentals 2", title: "Reading quarterly results (QoQ vs YoY)", terms: [Quarterly Results, QoQ, YoY]}
+- {day: 47, week: "Week 10 - Fundamentals 2", title: "Profit margins", terms: [Operating Margin, Net Margin]}
+- {day: 48, week: "Week 10 - Fundamentals 2", title: "Shareholding pattern - promoters, FIIs, DIIs, retail", terms: [Promoter, FII, DII, Shareholding Pattern]}
+- {day: 49, week: "Week 10 - Fundamentals 2", title: "Dividends, bonus and splits", terms: [Dividend, Dividend Yield, Bonus Issue, Stock Split]}
+- {day: 50, week: "Week 10 - Fundamentals 2", title: "Comparing a company with its peers", terms: [Peer Comparison, Sector Average]}
+- {day: 51, week: "Week 11 - Big picture", title: "Sectors and sector rotation", terms: [Sector, Sector Rotation]}
+- {day: 52, week: "Week 11 - Big picture", title: "FII and DII flows - who is buying India?", terms: [FII Flows, DII Flows]}
+- {day: 53, week: "Week 11 - Big picture", title: "India VIX - the fear gauge", terms: [India VIX, Volatility]}
+- {day: 54, week: "Week 11 - Big picture", title: "RBI, interest rates and inflation", terms: [Repo Rate, Inflation, Monetary Policy]}
+- {day: 55, week: "Week 11 - Big picture", title: "Global cues - US markets, crude oil and the rupee", terms: [Global Cues, Crude Oil, USD/INR]}
+- {day: 56, week: "Week 12 - Risk & paper trading", title: "Stop-loss - deciding where you are wrong before you enter", terms: [Stop-loss, Trailing Stop]}
+- {day: 57, week: "Week 12 - Risk & paper trading", title: "Position sizing - never risk more than 1-2% per trade", terms: [Position Sizing, Risk per Trade]}
+- {day: 58, week: "Week 12 - Risk & paper trading", title: "Risk:reward ratio", terms: [Risk Reward Ratio, Target]}
+- {day: 59, week: "Week 12 - Risk & paper trading", title: "Building a trading plan and journal", terms: [Trading Plan, Trading Journal]}
+- {day: 60, week: "Week 12 - Risk & paper trading", title: "Paper trading - practise with pretend money first", terms: [Paper Trading, Backtesting]}

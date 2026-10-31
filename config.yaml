@@ -1,0 +1,59 @@
+# NSE Daily Market Report - settings
+# Edit this file to change stocks, branding or the course start date.
+# Secrets (Gmail password, email addresses) NEVER go here - they live in
+# environment variables (see README).
+
+report:
+  title: "NSE Daily Market Report"
+  subtitle: "Learn the market, one day at a time"
+  language: "English"
+  # Day 1 of the 12-week beginner course. Each trading day after this moves one lesson forward.
+  course_start_date: "2026-11-02"
+  timezone: "Asia/Kolkata"
+
+# Stocks to analyse every day (Yahoo Finance symbols, NSE = ".NS")
+stocks:
+  - {symbol: HDFCBANK.NS,   name: "HDFC Bank",                 sector: "Banking"}
+  - {symbol: ICICIBANK.NS,  name: "ICICI Bank",                sector: "Banking"}
+  - {symbol: INFY.NS,       name: "Infosys",                   sector: "IT"}
+  - {symbol: TCS.NS,        name: "Tata Consultancy Services", sector: "IT"}
+  - {symbol: RELIANCE.NS,   name: "Reliance Industries",       sector: "Energy / Conglomerate"}
+  - {symbol: ITC.NS,        name: "ITC",                       sector: "FMCG"}
+  - {symbol: MARUTI.NS,     name: "Maruti Suzuki",             sector: "Auto"}
+  - {symbol: SUNPHARMA.NS,  name: "Sun Pharma",                sector: "Pharma"}
+  - {symbol: TATASTEEL.NS,  name: "Tata Steel",                sector: "Metals"}
+  - {symbol: BHARTIARTL.NS, name: "Bharti Airtel",             sector: "Telecom"}
+  - {symbol: JIOFIN.NS,     name: "Jio Financial Services",    sector: "Financial Services (NBFC)"}
+
+indices:
+  - {symbol: "^NSEI",     name: "Nifty 50",   meaning: "Top 50 NSE companies - the main 'market' number"}
+  - {symbol: "^BSESN",    name: "Sensex",     meaning: "Top 30 BSE companies"}
+  - {symbol: "^NSEBANK",  name: "Bank Nifty", meaning: "12 biggest bank stocks"}
+  - {symbol: "^INDIAVIX", name: "India VIX",  meaning: "'Fear index' - higher = traders expect bigger swings"}
+
+sectors:
+  - {symbol: "^CNXIT",      name: "IT"}
+  - {symbol: "^NSEBANK",    name: "Bank"}
+  - {symbol: "^CNXAUTO",    name: "Auto"}
+  - {symbol: "^CNXPHARMA",  name: "Pharma"}
+  - {symbol: "^CNXFMCG",    name: "FMCG"}
+  - {symbol: "^CNXMETAL",   name: "Metal"}
+  - {symbol: "^CNXENERGY",  name: "Energy"}
+  - {symbol: "^CNXREALTY",  name: "Realty"}
+
+global:
+  - {symbol: "^GSPC",    name: "S&P 500 (US)",      meaning: "US market - affects Indian IT & global mood"}
+  - {symbol: "^IXIC",    name: "Nasdaq (US)",       meaning: "US tech stocks"}
+  - {symbol: "^N225",    name: "Nikkei (Japan)",    meaning: "Asian market mood"}
+  - {symbol: "^HSI",     name: "Hang Seng (HK)",    meaning: "Asian market mood"}
+  - {symbol: "USDINR=X", name: "USD / INR",         meaning: "Rupee value - higher = weaker rupee (good for IT exporters)"}
+  - {symbol: "BZ=F",     name: "Brent Crude ($)",   meaning: "Oil price - India imports most of its oil"}
+
+# Used to find the day's top gainers / losers in Nifty 50 (symbols that fail are skipped)
+nifty50:
+  [ADANIENT, ADANIPORTS, APOLLOHOSP, ASIANPAINT, AXISBANK, BAJAJ-AUTO, BAJFINANCE, BAJAJFINSV,
+   BEL, BHARTIARTL, CIPLA, COALINDIA, DRREDDY, EICHERMOT, ETERNAL, GRASIM, HCLTECH, HDFCBANK,
+   HDFCLIFE, HEROMOTOCO, HINDALCO, HINDUNILVR, ICICIBANK, INDUSINDBK, INFY, ITC, JIOFIN,
+   JSWSTEEL, KOTAKBANK, LT, M&M, MARUTI, NESTLEIND, NTPC, ONGC, POWERGRID, RELIANCE, SBILIFE,
+   SBIN, SHRIRAMFIN, SUNPHARMA, TATACONSUM, TMPV, TATASTEEL, TCS, TECHM, TITAN, TRENT,
+   ULTRACEMCO, WIPRO]
