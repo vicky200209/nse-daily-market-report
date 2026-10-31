@@ -53,7 +53,14 @@ Holidays/weekends are detected automatically (no new market data → the run sto
    prompt: `Follow ROUTINE_PROMPT.md exactly.`
 4. Click **Run now** once and check your inbox and *Settings → Usage*.
 
-**If Gmail SMTP is blocked** in the cloud environment, create a free [Brevo](https://www.brevo.com) account, verify your
+**Claude cloud environments block SMTP**, so use the free Google Apps Script sender (sends from your own Gmail over HTTPS):
+1. Open <https://script.google.com> signed in with the sender Gmail → **New project** → paste [`tools/gmail_sender.gs`](tools/gmail_sender.gs).
+2. **Project Settings → Script properties → Add**: `MAIL_TOKEN` = any long random text.
+3. Select function `authorize` → **Run** → allow Gmail access.
+4. **Deploy → New deployment → Web app** (Execute as: *Me*, Who has access: *Anyone*) → copy the **Web app URL**.
+5. In the Claude environment add `APPS_SCRIPT_URL=<that URL>` and `MAIL_TOKEN=<same text>`.
+
+Alternatively, create a free [Brevo](https://www.brevo.com) account, verify your
 sender email, and add `BREVO_API_KEY=...` (and optionally `BREVO_SENDER=...`) to the environment. The script falls back to it automatically.
 
 ## Run locally

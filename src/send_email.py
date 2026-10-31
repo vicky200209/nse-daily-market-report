@@ -4,8 +4,12 @@ Environment variables (set them in the Claude Routine / cloud environment, never
   REPORT_RECIPIENTS   comma-separated list, e.g. "me@gmail.com, friend@outlook.com"
   GMAIL_USER          the Gmail address that sends the mail
   GMAIL_APP_PASSWORD  16-character Gmail App Password (not your normal password)
-Optional fallback if SMTP is blocked:
-  BREVO_API_KEY       Brevo (free tier) API key - sends over HTTPS instead of SMTP
+If SMTP is blocked (e.g. in Claude cloud environments), use the Google Apps Script sender instead
+(see tools/gmail_sender.gs) - it sends from your own Gmail over HTTPS:
+  APPS_SCRIPT_URL     the web-app URL of your deployed script
+  MAIL_TOKEN          the same secret you set in the script's properties
+Other fallback:
+  BREVO_API_KEY       Brevo (free tier) API key
 """
 import base64
 import glob
@@ -59,6 +63,26 @@ def send(pdf_path=None, subject=None, body=None):
     subject, body = subject or s, body or b
     user, pwd = os.environ.get("GMAIL_USER"), os.environ.get("GMAIL_APP_PASSWORD")
     errors = []
+    url, token = os.environ.get("APPS_SCRIPT_URL"), os.environ.get("MAIL_TOKEN")
+    if url and token:
+        payload = {"token": token, "to": to, "subject": subject, "body": body}
+        if pdf_path:
+            with open(pdf_path, "rb") as f:
+                payload["pdf_b64"] = base64.b64encode(f.read()).decode()
+            payload["filename"] = os.path.basename(pdf_path)
+        req = urllib.request.Request(url.strip(), data=json.dumps(payload).encode(),
+                                     headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                txt = r.read().decode(errors="replace")
+            res = json.loads(txt) if txt.strip().startswith("{") else {"ok": False, "error": txt[:200]}
+            if res.get("ok"):
+                print(f"OK: emailed {len(to)} recipient(s) via Gmail (Apps Script)")
+                return
+            errors.append(f"Apps Script failed: {res.get('error')}")
+        except Exception as e:
+            errors.append(f"Apps Script failed: {e}")
+        print(errors[-1], file=sys.stderr)
     if user and pwd:
         try:
             msg = EmailMessage()
@@ -68,7 +92,7 @@ def send(pdf_path=None, subject=None, body=None):
             if pdf_path:
                 with open(pdf_path, "rb") as f:
                     msg.add_attachment(f.read(), maintype="application", subtype="pdf", filename=os.path.basename(pdf_path))
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=60) as smtp:
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=20) as smtp:
                 smtp.login(user, pwd.replace(" ", ""))
                 smtp.send_message(msg)
             print(f"OK: emailed {len(to)} recipient(s) via Gmail")
@@ -92,7 +116,7 @@ def send(pdf_path=None, subject=None, body=None):
                 return
         except Exception as e:
             errors.append(f"Brevo failed: {e}")
-    sys.exit("ERROR: could not send email. " + " | ".join(errors or ["No GMAIL_USER/GMAIL_APP_PASSWORD or BREVO_API_KEY set"]))
+    sys.exit("ERROR: could not send email. " + " | ".join(errors or ["No APPS_SCRIPT_URL/MAIL_TOKEN, GMAIL_USER/GMAIL_APP_PASSWORD or BREVO_API_KEY set"]))
 
 
 if __name__ == "__main__":
