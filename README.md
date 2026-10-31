@@ -42,7 +42,14 @@ Holidays/weekends are detected automatically (no new market data → the run sto
 ### 2. Create the Claude Routine
 1. Open <https://claude.ai/code> and connect your GitHub account (install the Claude GitHub app on this repo).
 2. Create a **cloud environment** with:
-   - **Network access:** *Full* (it needs Yahoo Finance, Gmail SMTP and pip).
+   - **Network access:** *Limited* with these allowed domains (and "Allow package managers" ticked):
+     ```
+     *.yahoo.com
+     script.google.com
+     script.googleusercontent.com
+     pypi.org
+     files.pythonhosted.org
+     ```
    - **Environment variables** (private - never put these in the repo):
      ```
      GMAIL_USER=yoursender@gmail.com
