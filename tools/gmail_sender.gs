@@ -8,6 +8,8 @@
  * Put the same value in the Claude environment as MAIL_TOKEN.
  */
 
+// The Gmail address this script runs under (the sender) - put yours here.
+var ME = '';
 // SAFETY: only these addresses can ever receive mail from this script. Add yours (lowercase).
 var ALLOWED = [];
 
@@ -26,7 +28,7 @@ function doPost(e) {
     options.attachments = [Utilities.newBlob(Utilities.base64Decode(req.pdf_b64), 'application/pdf', req.filename)];
   }
   // sent to yourself, recipients in BCC so they can't see each other
-  GmailApp.sendEmail(Session.getEffectiveUser().getEmail(), req.subject, req.body, options);
+  GmailApp.sendEmail(ME, req.subject, req.body, options);
   return ContentService.createTextOutput(JSON.stringify({ok: true, sent: to.length}));
 }
 
