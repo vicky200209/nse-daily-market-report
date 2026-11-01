@@ -301,6 +301,7 @@ def course_day(cfg, session_date):
 
 
 def write_brief(data, path):
+    """Compact summary for Claude (~1.5k tokens). Stocks are sorted by size of move."""
     m = data["market"]
     with open(os.path.join(ROOT, "content", "curriculum.yaml")) as fh:
         cur = yaml.safe_load(fh)
@@ -310,26 +311,18 @@ def write_brief(data, path):
         lesson_line = f"Lesson #{day} ({les['week']}): {les['title']} - terms: {', '.join(les['terms'])}"
     else:
         lesson_line = f"Lesson #{day}: REVIEW MODE - pick the concept most visible in today's market and re-teach it"
-    L = [f"# Market brief for {data['session_date_human']} (course day {day})", "", lesson_line, "",
-         "## Indices"]
-    for i in m["indices"]:
-        L.append(f"- {i['name']}: {i['close']:,} ({i['pct']:+.2f}%)")
-    L.append(f"- Breadth (Nifty 50): {m['breadth']['advances']} up / {m['breadth']['declines']} down")
-    L.append("- Sectors: " + ", ".join(f"{s['name']} {s['pct']:+.2f}%" for s in m["sectors"]))
-    L.append("- Global: " + ", ".join(f"{g['name']} {g['pct']:+.2f}%" for g in m["global"]))
-    L.append("- Top gainers: " + ", ".join(f"{g['symbol']} {g['pct']:+.2f}%" for g in m["gainers"]))
-    L.append("- Top losers: " + ", ".join(f"{g['symbol']} {g['pct']:+.2f}%" for g in m["losers"]))
-    L.append("")
-    for s in data["stocks"]:
-        p, t, it, f = s["price"], s["tech"], s["intraday"], s["fund"]
-        L.append(f"## {s['symbol']} - {s['name']} ({s['sector']})")
-        L.append(f"- Close {p['close']:,} ({p['pct']:+.2f}%; {'beat' if p['vs_nifty'] >= 0 else 'lagged'} Nifty by {abs(p['vs_nifty']):.2f} percentage points), O {p['open']} H {p['high']} L {p['low']}, gap {p['gap_pct']:+.2f}%, volume {p['vol_ratio']}x avg")
-        L.append(f"- Intraday: opening range {it['or_low']}-{it['or_high']}, day high at {it['high_time']}, low at {it['low_time']}, closed {it['close_vs_vwap']} VWAP {it['vwap_close']}, biggest 5m move {it['biggest_5m_move']}")
-        L.append(f"- Tech: {t['trend']}; RSI {t['rsi']}; MACD {'bullish' if t['macd_bullish'] else 'bearish'}{' (crossed today)' if t['macd_cross_today'] else ''}; 20/50/200 DMA {t['sma20']}/{t['sma50']}/{t['sma200']}; support {t['support']}, resistance {t['resistance']}; 52w {t['lo52']}-{t['hi52']}")
-        pats = "; ".join(f"{x['pattern']} ({x['bias']}, {x['date']}) - {x['history']}" for x in s["patterns"]) or "none"
-        L.append(f"- Candle patterns last 5 days: {pats}")
-        L.append(f"- Fundamentals: PE {f['pe']}, ROE {f['roe']}%, D/E {f['de']}, rev growth {f['rev_growth']}%, profit growth {f['profit_growth']}%, margin {f['margin']}%, next results {f['next_results']}")
-        L.append("")
+    L = [f"# Brief: {data['session_date_human']}", lesson_line, "",
+         "Indices: " + "; ".join(f"{i['name']} {i['close']:,} ({i['pct']:+.2f}%)" for i in m["indices"]),
+         f"Breadth (Nifty 50): {m['breadth']['advances']} up / {m['breadth']['declines']} down",
+         "Sectors: " + ", ".join(f"{s['name']} {s['pct']:+.2f}%" for s in m["sectors"]),
+         "Global: " + ", ".join(f"{g['name']} {g['pct']:+.2f}%" for g in m["global"]),
+         "Top gainers: " + ", ".join(f"{g['symbol']} {g['pct']:+.2f}%" for g in m["gainers"]),
+         "Top losers: " + ", ".join(f"{g['symbol']} {g['pct']:+.2f}%" for g in m["losers"]),
+         "", "Our stocks, biggest move first (SYMBOL close %chg | volume vs avg | trend | RSI | patterns | next results):"]
+    for s in sorted(data["stocks"], key=lambda x: -abs(x["price"]["pct"])):
+        p, t, f = s["price"], s["tech"], s["fund"]
+        pats = ", ".join(f"{x['pattern']}" for x in s["patterns"]) or "none"
+        L.append(f"- {s['symbol']} ({s['sector']}) {p['close']:,} {p['pct']:+.2f}% | vol {p['vol_ratio']}x | {t['trend']} | RSI {t['rsi']} | {pats} | results {f['next_results'] or 'n/a'}")
     with open(path, "w") as fh:
         fh.write("\n".join(L))
 

@@ -40,7 +40,7 @@ def daily_chart(df: pd.DataFrame, title: str, support: float, resistance: float,
         adds.append(mpf.make_addplot(neut, type="scatter", marker="D", markersize=50, color="#888888"))
     fig, axes = mpf.plot(
         d, type="candle", style=STYLE, volume=True, addplot=adds, returnfig=True,
-        figsize=(10, 5.2), panel_ratios=(4, 1),
+        figsize=(10, 4.3), panel_ratios=(4, 1),
         hlines=dict(hlines=[support, resistance], colors=["#1a9e5c", "#d64545"], linestyle="--", linewidths=1),
         ylabel="Price (Rs)", ylabel_lower="Volume",
     )

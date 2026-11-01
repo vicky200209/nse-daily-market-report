@@ -81,7 +81,7 @@ def table(rows, widths, header=True, zebra=True, extra=None):
     t = Table(rows, colWidths=widths, repeatRows=1 if header else 0)
     st = [("FONTNAME", (0, 0), (-1, -1), "DV"), ("FONTSIZE", (0, 0), (-1, -1), 8),
           ("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#d0d6e0")),
-          ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]
+          ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2)]
     if header:
         st += [("BACKGROUND", (0, 0), (-1, 0), NAVY), ("TEXTCOLOR", (0, 0), (-1, 0), colors.white), ("FONTNAME", (0, 0), (-1, 0), "DVB")]
     if zebra:
@@ -241,7 +241,7 @@ def stock_pages(s, n):
         story.append(Spacer(1, 4))
         story.append(box([P("**Pattern check:** " + sn["pattern_lesson"], "box")], bg=colors.HexColor("#f5f0ff"), border=colors.HexColor("#7a3db8")))
 
-    story += [CondPageBreak(12 * cm), P("Technical analysis (price & chart based)", "h3"), signal_rows(s["tech_rows"])]
+    story += [CondPageBreak(8 * cm), P("Technical analysis (price & chart based)", "h3"), signal_rows(s["tech_rows"])]
     if sn.get("technical_view"):
         story += [Spacer(1, 3), P("**In simple words:** " + sn["technical_view"])]
     story += [CondPageBreak(7 * cm), P("Fundamental analysis (business health)", "h3"), signal_rows(s["fund_rows"])]
@@ -310,7 +310,9 @@ def build(out_path=None):
         with open(npath) as f:
             n = json.load(f)
     else:
-        print("WARN: out/narrative.json missing - building data-only report", file=sys.stderr)
+        print("WARN: out/narrative.json missing - using automatic text only", file=sys.stderr)
+    from .auto_text import build_auto, merge
+    n = merge(build_auto(d), n)
     with open(os.path.join(ROOT, "content", "curriculum.yaml")) as f:
         curriculum = yaml.safe_load(f)
     out_path = out_path or os.path.join(OUT, f"NSE_Daily_Report_{d['session_date']}.pdf")
