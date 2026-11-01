@@ -75,7 +75,14 @@ def send(pdf_path=None, subject=None, body=None):
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
                 txt = r.read().decode(errors="replace")
-            res = json.loads(txt) if txt.strip().startswith("{") else {"ok": False, "error": txt[:200]}
+            if txt.strip().startswith("{"):
+                res = json.loads(txt)
+            else:  # Google returned an HTML page - show its title/text so the cause is visible
+                import re
+                title = re.search(r"<title>(.*?)</title>", txt, re.S)
+                text = re.sub(r"\s+", " ", re.sub(r"<script.*?</script>|<style.*?</style>|<[^>]+>", " ", txt, flags=re.S)).strip()
+                res = {"ok": False, "error": f"HTML page from Google (title: {title.group(1).strip() if title else '-'}): {text[:300]} "
+                                             f"| URL used ends with ...{url.strip()[-12:]}"}
             if res.get("ok"):
                 print(f"OK: emailed {len(to)} recipient(s) via Gmail (Apps Script)")
                 return
